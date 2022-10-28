@@ -2,10 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pollo.Serie;
+
 import util.DatabaseConnection;
 
 public class SerieDao implements Dao<Serie> {
@@ -54,9 +56,31 @@ public class SerieDao implements Dao<Serie> {
 	}
 
 	@Override
-	public Serie bucarPorId(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Serie bucarPorId(int id) {
+		
+		connection = openConnection();
+		
+		String query="select * from series where id =?";
+		Serie serie = null;
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.setInt(1, id);
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				 serie=new Serie(rs.getInt("id"),
+							rs.getString("titulo"),
+							rs.getInt("edad"),
+							rs.getString("plataforma"),
+							null);
+			}
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		closeConnection();
+		
+		return serie;
 	}
 	private static Connection openConnection() {
 		

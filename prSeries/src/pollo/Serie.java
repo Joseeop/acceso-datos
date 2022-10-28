@@ -75,7 +75,10 @@ public class Serie {
 	
 	@Override
 	public String toString() {
-		return "Serie [id=" + id + ", titulo=" + titulo + ", edad=" + edad + ", plataforma=" + plataforma + "]";
+		return "Serie :" + id + 
+				"\n\t titulo: " + titulo + 
+				"\n\t edad: " + edad + 
+				"\n\t plataforma=" + plataforma;
 	}
 
 	
