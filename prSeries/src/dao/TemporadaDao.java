@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import pollo.Temporadas;
 import util.DatabaseConnection;
 
-public class TemporadaDao implements Dao<Temporadas> {
+public class TemporadaDao extends ObjetoDao implements InterfazDao<Temporadas>  {
 	
 	private static Connection connection;
 	
@@ -66,22 +66,6 @@ public class TemporadaDao implements Dao<Temporadas> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	private static Connection openConnection() {
-		
-		DatabaseConnection  dbConnection = new DatabaseConnection();
-		connection = dbConnection.getConnection();
-		return connection;
-	}
-	
-	private static void closeConnection() {
-		
-		try {
-			connection.close();
-			connection=null;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 
 }

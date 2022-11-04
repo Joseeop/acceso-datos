@@ -78,7 +78,7 @@ public class Serie {
 		return "Serie :" + id + 
 				"\n\t titulo: " + titulo + 
 				"\n\t edad: " + edad + 
-				"\n\t plataforma=" + plataforma;
+				"\n\t plataforma: " + plataforma;
 	}
 
 	

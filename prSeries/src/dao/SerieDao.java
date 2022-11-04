@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import pollo.Serie;
-
+import pollo.Temporadas;
 import util.DatabaseConnection;
 
-public class SerieDao implements Dao<Serie> {
+public class SerieDao extends ObjetoDao implements InterfazDao<Serie> {
 
 	private static Connection connection;
 	
@@ -38,21 +38,102 @@ public class SerieDao implements Dao<Serie> {
 	}
 
 	@Override
-	public void modificar(Serie t) {
-		// TODO Auto-generated method stub
+	public void modificar(Serie serie) {
+		
+		int id = serie.getId();
+		String titulo = serie.getTitulo();
+		int edad = serie.getEdad();
+		String plataforma = serie.getPlataforma();
+		connection = openConnection();
+		String query ="UPDATE series set titulo =?, edad = ?,  plataforma =? wh"
+				+ "ere id = ?";
+		try {
+			PreparedStatement ps= connection.prepareStatement(query);
+			ps.setString(1, titulo);
+			ps.setInt(2, edad);
+			ps.setString(3, plataforma);
+			ps.setInt(4, id);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		closeConnection();
 		
 	}
 
+	public  ArrayList<Temporadas> obtenerTemporadas(Serie serie){
+		
+		ArrayList<Temporadas> temporadas=new ArrayList<Temporadas>();
+		
+		connection = openConnection();
+		
+		String query="SELECT * FROM temporadas WHERE serie_id=?";
+		
+		try {
+			PreparedStatement ps= connection.prepareStatement(query);
+			ps.setInt(1, serie.getId());
+			ResultSet rs=ps.executeQuery();
+			
+			
+			while(rs.next()) {
+				Temporadas temporada=new Temporadas(
+						rs.getInt("id"),
+						rs.getInt("num_temporada"),
+						rs.getString("titulo"),
+						serie
+						);
+				temporadas.add(temporada);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		closeConnection();
+		
+		return temporadas;
+	}
+	
 	@Override
 	public void borrar(Serie t) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public ArrayList<Serie> buscarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		connection= openConnection();
+		
+		ArrayList<Serie>series = new ArrayList<>();
+		
+		String query = "select * from series";
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			ResultSet rs= ps.executeQuery();
+			while (rs.next()) {
+			Serie serie=new Serie(rs.getInt("id"),
+							rs.getString("titulo"),
+							rs.getInt("edad"),
+							rs.getString("plataforma"),
+							null);
+			series.add(serie);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		closeConnection();
+		
+		
+		return series;
+		
 	}
 
 	@Override
@@ -72,7 +153,9 @@ public class SerieDao implements Dao<Serie> {
 							rs.getString("titulo"),
 							rs.getInt("edad"),
 							rs.getString("plataforma"),
-							null);
+							null
+				);
+				 serie.setTemporadas(obtenerTemporadas(serie));
 			}
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -82,22 +165,6 @@ public class SerieDao implements Dao<Serie> {
 		
 		return serie;
 	}
-	private static Connection openConnection() {
-		
-		DatabaseConnection  dbConnection = new DatabaseConnection();
-		connection = dbConnection.getConnection();
-		return connection;
-	}
-	
-	private static void closeConnection() {
-		
-		try {
-			connection.close();
-			connection=null;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 
 }
