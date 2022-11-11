@@ -51,9 +51,24 @@ public class TemporadaDao extends ObjetoDao implements InterfazDao<Temporadas>  
 
 	@Override
 	public void borrar(Temporadas t) {
-		// TODO Auto-generated method stub
+		connection = openConnection();
 		
+		int id = t.getId();
+		String query = "delete from temporadas where id = ?";
+		try {
+			
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		closeConnection();
 	}
+		
+	
 
 	@Override
 	public ArrayList<Temporadas> buscarTodos() {

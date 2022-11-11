@@ -69,7 +69,7 @@ public class SerieDao extends ObjetoDao implements InterfazDao<Serie> {
 		
 		ArrayList<Temporadas> temporadas=new ArrayList<Temporadas>();
 		
-		connection = openConnection();
+		//connection = openConnection();
 		
 		String query="SELECT * FROM temporadas WHERE serie_id=?";
 		
@@ -94,7 +94,7 @@ public class SerieDao extends ObjetoDao implements InterfazDao<Serie> {
 		}
 		
 		
-		closeConnection();
+		//closeConnection();
 		
 		return temporadas;
 	}
@@ -164,6 +164,23 @@ public class SerieDao extends ObjetoDao implements InterfazDao<Serie> {
 		closeConnection();
 		
 		return serie;
+	}
+	
+	public void borrarPorSerie(int serie_id) {
+		connection=openConnection();
+		
+		String query="DELETE FROM temporadas where serie_id = ?";
+		
+		try {
+			PreparedStatement ps= connection.prepareStatement(query);
+			ps.setInt(1, serie_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		closeConnection();
 	}
 
 

@@ -12,7 +12,25 @@ import pollo.Temporadas;
 public class PrincipalSeries {
 
 	public static void main(String[] args) {
-		Serie s= new Serie("Los Simpsons",7,"Disney Plus");
+		
+		SerieDao serieDao=new SerieDao();
+		TemporadaDao temporadaDao=new TemporadaDao();
+		
+		
+		serieDao.borrarPorSerie(1);
+		
+		/*Serie s=serieDao.bucarPorId(1);
+		
+		Temporadas t1=new Temporadas(1,"The simpsons Season1",s);
+		Temporadas t2=new Temporadas(1,"The simpsons Season2",s);
+		Temporadas t3=new Temporadas(1,"The simpsons Season3",s);
+		
+		temporadaDao.insertar(t3);
+		temporadaDao.insertar(t2);
+		temporadaDao.insertar(t1);
+		*/
+		
+	/*	Serie s= new Serie("Los Simpsons",7,"Disney Plus");
 		Serie s2= new Serie("Peaky Blinders",18,"Netflix");
 		
 		
@@ -52,7 +70,7 @@ public class PrincipalSeries {
 		for (Temporadas temporada : temporadas) {
 			System.out.println(temporada);
 		}
-
+*/
 	}
 
 }
