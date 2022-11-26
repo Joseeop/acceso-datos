@@ -3,13 +3,13 @@ package util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+//TERMINADO.
 public class DatabaseConnection {
 
 	Connection connection;
 	
 	public Connection getConnection() {
-		String dbName = "bd_series";
+		String dbName = "bd_clases";
 		String userName="root";
 		String password="admin";
 		

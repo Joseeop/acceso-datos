@@ -1,16 +1,16 @@
 package pollo;
 
 import java.util.ArrayList;
-
+//TERMINADA
 public class Clase {
 
 	private int id;
 	private int anio;
 	private String profesor;
 	private String nombre;
-	private ArrayList <Alumnos> alumnos;
+	private ArrayList <Alumno> alumnos;
 	
-	//TERMINADA
+	
 	public Clase(int anio,String profesor,String nombre) {
 		
 		super();
@@ -20,7 +20,7 @@ public class Clase {
 	}
 	
 	
-	public Clase(int id, int anio, String profesor, String nombre, ArrayList<Alumnos> alumnos) {
+	public Clase(int id, int anio, String profesor, String nombre, ArrayList<Alumno> alumnos) {
 		super();
 		this.id = id;
 		this.anio = anio;
@@ -70,12 +70,12 @@ public class Clase {
 	}
 
 
-	public ArrayList<Alumnos> getAlumnos() {
+	public ArrayList<Alumno> getAlumnos() {
 		return alumnos;
 	}
 
 
-	public void setAlumnos(ArrayList<Alumnos> alumnos) {
+	public void setAlumnos(ArrayList<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
 	

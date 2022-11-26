@@ -2,22 +2,50 @@ package principal;
 
 import java.util.ArrayList;
 
-import dao.SerieDao;
-import dao.TemporadaDao;
-import pollo.Serie;
-import pollo.Temporadas;
+import dao.AlumnoDao;
+import dao.ClaseDao;
+
+
+import pollo.Alumno;
+import pollo.Clase;
 
 
 
-public class PrincipalSeries {
+
+public class PrincipalCA {
 
 	public static void main(String[] args) {
 		
-		SerieDao serieDao=new SerieDao();
-		TemporadaDao temporadaDao=new TemporadaDao();
+//		SerieDao serieDao=new SerieDao();
+//		TemporadaDao temporadaDao=new TemporadaDao();
+		
+		ClaseDao claseDao=new ClaseDao();
+		AlumnoDao alumnoDao=new AlumnoDao();
+		
+		//INSERTAMOS NUEVA CLASE.FUNCIONA
+//		Clase c=new Clase(2,"Miguel","PSP");
+//		claseDao.insertar(c);
+		
+		//INSERTAMOS NUEVO ALUMNO.FUNCIONA
+//		Clase c1=claseDao.buscarPorId(1);
+//		Alumno a1=new Alumno("José","Oña",32,c1);
+//		alumnoDao.insertar(a1);
 		
 		
-		serieDao.borrarPorSerie(1);
+		//PROBAMOS EL MÉTODO BUSCAR TODO DE CLASE. FUNCIONA.
+		ArrayList<Clase> clases = claseDao.buscarTodos();
+		for(Clase serieFOR : clases) {
+			System.out.println(serieFOR);
+		}
+		
+		//PROBAMOS EL MÉTODO BUSCAR TODO DE ALUMNOS
+		ArrayList<Alumno>alumnos=alumnoDao.buscarTodos();
+		for(Alumno alumnoFOR : alumnos) {
+			System.out.println(alumnoFOR);
+		}
+		
+		
+//		serieDao.borrarPorSerie(1);
 		
 		/*Serie s=serieDao.bucarPorId(1);
 		

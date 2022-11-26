@@ -1,28 +1,30 @@
 package pollo;
-
-public class Alumnos {
+//TERMINADA
+public class Alumno {
 
 	private int id;
-	private int num_alumnos;
 	private String nombre;
+	private String apellido;
 	private int edad;
 	private Clase clase;
 	
 	
-	public Alumnos(int id, int num_alumnos, String nombre, int edad, Clase clase) {
+	public Alumno(int id,String nombre,String apellido, int edad, Clase clase) {
 		super();
 		this.id = id;
-		this.num_alumnos = num_alumnos;
 		this.nombre = nombre;
+		this.apellido=apellido;
 		this.edad = edad;
 		this.clase = clase;
+		
 	}
 
 
-	public Alumnos(int num_alumnos, String nombre, int edad, Clase clase) {
+	public Alumno( String nombre,String apellido, int edad, Clase clase) {
 		super();
-		this.num_alumnos = num_alumnos;
+		
 		this.nombre = nombre;
+		this.apellido=apellido;
 		this.edad = edad;
 		this.clase = clase;
 	}
@@ -38,14 +40,7 @@ public class Alumnos {
 	}
 
 
-	public int getNum_alumnos() {
-		return num_alumnos;
-	}
-
-
-	public void setNum_alumnos(int num_alumnos) {
-		this.num_alumnos = num_alumnos;
-	}
+	
 
 
 	public String getNombre() {
@@ -76,6 +71,22 @@ public class Alumnos {
 	public void setClase(Clase clase) {
 		this.clase = clase;
 	}
-	
+	public String getApellido() {
+		return apellido;
+	}
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Alumno :" + id + 
+				"\n\t Nombre: " + nombre + 
+				"\n\t Apellido: "+apellido+
+				"\n\t Edad: " + edad ;
+	}
 	
 }
