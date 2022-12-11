@@ -16,8 +16,7 @@ public class PrincipalCA {
 
 	public static void main(String[] args) {
 		
-//		SerieDao serieDao=new SerieDao();
-//		TemporadaDao temporadaDao=new TemporadaDao();
+
 		
 		ClaseDao claseDao=new ClaseDao();
 		AlumnoDao alumnoDao=new AlumnoDao();
@@ -26,16 +25,30 @@ public class PrincipalCA {
 //		Clase c=new Clase(2,"Miguel","PSP");
 //		claseDao.insertar(c);
 		
+		
+		
+		//PROBAMOS MÉTODO BORRAR CLASE, FUNCIONA
+		/*Clase c=new Clase(2,"Alejandra","Acceso a Datos");
+		Clase borrar = claseDao.buscarPorId(2);
+		claseDao.insertar(c);
+		claseDao.borrar(borrar);*/
+		
 		//INSERTAMOS NUEVO ALUMNO.FUNCIONA
 //		Clase c1=claseDao.buscarPorId(1);
 //		Alumno a1=new Alumno("José","Oña",32,c1);
 //		alumnoDao.insertar(a1);
 		
+		/*Clase c1=claseDao.buscarPorId(1);
+		Alumno a1=new Alumno("Manuel","Porras",12,c1);
+		alumnoDao.insertar(a1);*/
+		Alumno borrar= alumnoDao.buscarPorId(3);
+		alumnoDao.borrar(borrar);
+		
 		
 		//PROBAMOS EL MÉTODO BUSCAR TODO DE CLASE. FUNCIONA.
 		ArrayList<Clase> clases = claseDao.buscarTodos();
-		for(Clase serieFOR : clases) {
-			System.out.println(serieFOR);
+		for(Clase claseFOR : clases) {
+			System.out.println(claseFOR);
 		}
 		
 		//PROBAMOS EL MÉTODO BUSCAR TODO DE ALUMNOS
@@ -43,6 +56,22 @@ public class PrincipalCA {
 		for(Alumno alumnoFOR : alumnos) {
 			System.out.println(alumnoFOR);
 		}
+		
+		//PROBAMOS EL MÉTODO MODIFICAR DE CLASE
+		Clase buscar = claseDao.buscarPorId(1);
+		System.out.println("Clase 1 "+buscar);
+		buscar.setNombre("PSP");
+		buscar.setProfesor("Miguel");
+		buscar.setAnio(2);
+		claseDao.modificar(buscar);
+		
+		//PROBAMOS EL MÉTODO MODIFICAR DE ALUMNO.
+		Alumno buscarAlumno= alumnoDao.buscarPorId(2);
+		buscarAlumno.setNombre("Jose");
+		buscarAlumno.setApellido("Ona");
+		buscarAlumno.setEdad(29);
+		alumnoDao.modificar(buscarAlumno);
+		
 		
 		
 //		serieDao.borrarPorSerie(1);

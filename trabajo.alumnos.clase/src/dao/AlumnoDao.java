@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
+
 import pollo.Alumno;
 import pollo.Clase;
 //FALTA POR HACER EL MÉTODO BUSCARPORID.
@@ -74,7 +76,7 @@ public class AlumnoDao extends ObjetoDaoCA implements InterfazDaoCA<Alumno> {
 		String apellido=t.getApellido();
 		int edad=t.getEdad();
 		connection = openConnection();
-		String query = "UPDATE alumno set nombre=?, apellido=?, edad=? where id = ?";
+		String query = "UPDATE alumnos set nombre=?, apellido=?, edad=? where id = ?";
 
 		try {
 			PreparedStatement ps = connection.prepareStatement(query);
@@ -145,16 +147,45 @@ public class AlumnoDao extends ObjetoDaoCA implements InterfazDaoCA<Alumno> {
 						rs.getString("nombre"), 
 						rs.getString("apellido"), 
 						rs.getInt("edad"),
-						null);
+						obtenerClase(rs.getInt("clase_id"))
+						);
 				//FALTA POR HACER
-				//alumno.setClase(alumno.getClase().b(alumno));
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		closeConnection();
+	//	closeConnection();
 
 		return alumno;
+	}
+	public Clase obtenerClase(int clase_id) {
+		
+	Clase clase=null;
+	connection = openConnection();
+	String query = "SELECT * FROM clase WHERE id=?";
+	
+	try {
+		PreparedStatement ps= connection.prepareStatement(query);
+		ps.setInt(1, clase_id);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			clase= new Clase(rs.getInt("id"),
+						rs.getInt("anio"),
+						rs.getString("profesor"),
+						rs.getString("nombre"),
+						null
+					);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	closeConnection();
+	
+	return clase;
+			
 	}
 }

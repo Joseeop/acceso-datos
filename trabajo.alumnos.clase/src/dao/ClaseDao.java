@@ -26,8 +26,11 @@ public class ClaseDao extends ObjetoDaoCA implements InterfazDaoCA<Clase> {
 			PreparedStatement ps = connection.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Clase clase = new Clase(rs.getInt("id"), rs.getInt("anio"), rs.getString("profesor"),
-						rs.getString("nombre"), null);
+				Clase clase = new Clase(rs.getInt("id"),
+						rs.getInt("anio"), 
+						rs.getString("profesor"),
+						rs.getString("nombre")
+						, null);
 				clases.add(clase);
 			}
 		} catch (SQLException e) {
@@ -118,7 +121,10 @@ public class ClaseDao extends ObjetoDaoCA implements InterfazDaoCA<Clase> {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				clase = new Clase(rs.getInt("id"), rs.getInt("anio"), rs.getString("profesor"), rs.getString("nombre"),
+				clase = new Clase(rs.getInt("id"), 
+						rs.getInt("anio"), 
+						rs.getString("profesor"), 
+						rs.getString("nombre"),
 						null);
 				clase.setAlumnos(obtenerAlumnos(clase));
 			}
