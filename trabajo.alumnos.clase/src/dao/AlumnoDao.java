@@ -160,6 +160,38 @@ public class AlumnoDao extends ObjetoDaoCA implements InterfazDaoCA<Alumno> {
 
 		return alumno;
 	}
+	
+	public Alumno buscarPorNombre(String nombre) {
+		connection = openConnection();
+		
+		String query = "select * from alumnos where nombre =?";
+		Alumno alumno = null;
+		
+		PreparedStatement ps;
+		try {
+			ps = connection.prepareStatement(query);
+			ps.setString(1, nombre);
+			ResultSet rs= ps.executeQuery();
+			
+			while (rs.next()) {
+				alumno = new Alumno(rs.getInt("id"), 
+						rs.getString("nombre"), 
+						rs.getString("apellido"), 
+						rs.getInt("edad"),
+						obtenerClase(rs.getInt("clase_id"))
+						);
+		} }catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//closeConnection();
+		
+		return alumno;
+	}
+	
+	
+	
 	public Clase obtenerClase(int clase_id) {
 		
 	Clase clase=null;
@@ -188,4 +220,5 @@ public class AlumnoDao extends ObjetoDaoCA implements InterfazDaoCA<Alumno> {
 	return clase;
 			
 	}
+	
 }
