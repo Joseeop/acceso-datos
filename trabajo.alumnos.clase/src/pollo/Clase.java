@@ -10,7 +10,12 @@ public class Clase {
 	private String nombre;
 	private ArrayList <Alumno> alumnos;
 	
-	
+	/**
+	 * Constructor de la clase Clase sin id.
+	 * @param anio
+	 * @param profesor
+	 * @param nombre
+	 */
 	public Clase(int anio,String profesor,String nombre) {
 		
 		super();
@@ -19,7 +24,14 @@ public class Clase {
 		this.profesor=profesor;
 	}
 	
-	
+	/**
+	 * Constructor de la clase Clase, con id y un ArrayList de la clase alumnos
+	 * @param id
+	 * @param anio
+	 * @param profesor
+	 * @param nombre
+	 * @param alumnos ArrayList que almacena los alumnos de una clase.
+	 */
 	public Clase(int id, int anio, String profesor, String nombre, ArrayList<Alumno> alumnos) {
 		super();
 		this.id = id;

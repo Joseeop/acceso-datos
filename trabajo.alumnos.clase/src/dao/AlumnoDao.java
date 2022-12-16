@@ -160,7 +160,11 @@ public class AlumnoDao extends ObjetoDaoCA implements InterfazDaoCA<Alumno> {
 
 		return alumno;
 	}
-	
+	/**
+	 * Método buscarPorNombre de la clase AlumnoDao
+	 * @param nombre que recibe por argumentos
+	 * @return devuelve el alumno
+	 */
 	public Alumno buscarPorNombre(String nombre) {
 		connection = openConnection();
 		
@@ -189,8 +193,73 @@ public class AlumnoDao extends ObjetoDaoCA implements InterfazDaoCA<Alumno> {
 		
 		return alumno;
 	}
+	/**
+	 * Méotod que busca el alumno de mayor edad
+	 * @return la edad que tiene el alumno más longevo de la clase.
+	 */
+	public int buscarPorEdad() {
+		int edad = 0;
+		
+		connection = openConnection();
+		
+
+        String query = "SELECT MAX(edad) FROM alumnos";
+   
+		try {
+		     PreparedStatement	ps = connection.prepareStatement(query);
+		    ResultSet rs = ps.executeQuery();
+		      
+
+	        if (rs.next()) {
+	            edad = rs.getInt(1);
+	        }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
+
+        return edad;
+		 
+		
+		
+		
+	}
 	
+	public int edadMedia() {
+		int edad = 0;
+		
+		connection = openConnection();
+		
+
+        String query = "SELECT AVG(edad) FROM alumnos";
+   
+		try {
+		     PreparedStatement	ps = connection.prepareStatement(query);
+		    ResultSet rs = ps.executeQuery();
+		      
+
+	        if (rs.next()) {
+	            edad = rs.getInt(1);
+	        }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
+
+        return edad;
+		 
+		
+		
+		
+	}
 	
+	/**
+	 * Método para oteter todos los datos de una clase mediante su ID
+	 * @param clase_id la id de la clase
+	 * @return todos los datos de la clase.
+	 */
 	
 	public Clase obtenerClase(int clase_id) {
 		
@@ -220,5 +289,7 @@ public class AlumnoDao extends ObjetoDaoCA implements InterfazDaoCA<Alumno> {
 	return clase;
 			
 	}
+	
+	
 	
 }

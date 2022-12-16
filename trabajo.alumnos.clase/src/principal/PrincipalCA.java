@@ -34,7 +34,7 @@ public class PrincipalCA {
 		claseDao.borrar(borrar);*/
 		
 		//INSERTAMOS NUEVO ALUMNO.FUNCIONA
-//		Clase c1=claseDao.buscarPorId(1);
+//		Clase c1=claseDao.buscarPorId(4);
 //		Alumno a1=new Alumno("José","Oña",32,c1);
 //		alumnoDao.insertar(a1);
 		
@@ -46,43 +46,48 @@ public class PrincipalCA {
 //		alumnoDao.borrar(borrar);
 		
 		//PROBAMOS EL MÉTODO BUSCAR POR NOMBRE. FUNCIONA
-		Alumno buscarNombre= alumnoDao.buscarPorNombre("Jose");
-		System.out.println("Estos son los alumnos que hemos encontrado:\n\t "
-		+" Nombre:  "+buscarNombre.getNombre()
-		+" \n\tApellido: "+buscarNombre.getApellido()
-		+" \n\tEdad: "+buscarNombre.getEdad());
-		System.out.println("----------------------------------------------");
+//		Alumno buscarNombre= alumnoDao.buscarPorNombre("Jose");
+//		System.out.println("Estos son los alumnos que hemos encontrado:\n\t "
+//				+" Nombre:  "+buscarNombre.getNombre()
+//		+" \n\tApellido: "+buscarNombre.getApellido()
+//		+" \n\tEdad: "+buscarNombre.getEdad());
+//		System.out.println("----------------------------------------------");
 		
 		
 		//PROBAMOS EL MÉTODO BUSCAR TODO DE CLASE. FUNCIONA.
-		ArrayList<Clase> clases = claseDao.buscarTodos();
-		for(Clase claseFOR : clases) {
-			System.out.println(claseFOR);
-		}
-		
-		//PROBAMOS EL MÉTODO BUSCAR TODO DE ALUMNOS
-		ArrayList<Alumno>alumnos=alumnoDao.buscarTodos();
-		for(Alumno alumnoFOR : alumnos) {
-			System.out.println(alumnoFOR);
-		}
+//		ArrayList<Clase> clases = claseDao.buscarTodos();
+//		for(Clase claseFOR : clases) {
+//			System.out.println(claseFOR);
+//		}
+//		
+//		//PROBAMOS EL MÉTODO BUSCAR TODO DE ALUMNOS
+//		ArrayList<Alumno>alumnos=alumnoDao.buscarTodos();
+//		for(Alumno alumnoFOR : alumnos) {
+//			System.out.println(alumnoFOR);
+//		}
 		
 		//PROBAMOS EL MÉTODO MODIFICAR DE CLASE.FUNCIONA
-		Clase buscar = claseDao.buscarPorId(1);
-		System.out.println(buscar);
-		buscar.setNombre("PSP");
-		buscar.setProfesor("Miguel");
-		buscar.setAnio(2);
-		claseDao.modificar(buscar);
+//		Clase buscar = claseDao.buscarPorId(4);
+//		System.out.println(buscar);
+//		buscar.setNombre("PSP");
+//		buscar.setProfesor("Miguel");
+//		buscar.setAnio(2);
+//		claseDao.modificar(buscar);
 		
 		//PROBAMOS EL MÉTODO MODIFICAR DE ALUMNO.FUNCIONA
-		Alumno buscarAlumno= alumnoDao.buscarPorId(2);
-		buscarAlumno.setNombre("Jose");
-		buscarAlumno.setApellido("Ona");
-		buscarAlumno.setEdad(29);
-		alumnoDao.modificar(buscarAlumno);
+//		Alumno buscarAlumno= alumnoDao.buscarPorId(4);
+//		buscarAlumno.setNombre("Jose");
+//		buscarAlumno.setApellido("Ona");
+//		buscarAlumno.setEdad(29);
+//		alumnoDao.modificar(buscarAlumno);
 		
+		//PROBAMOS METODO PARA SACAR EL ALUMNO DE MAYOR EDAD.
+		int mayor=alumnoDao.buscarPorEdad();
+		System.out.println("El alumno de mayor edad tiene"+mayor+" años.");
 		
-		
+		//PROBAMOS METODO PARA SACAR LA EDAD MEDIA DE LOS ALUMNOS.
+		int media=alumnoDao.edadMedia();
+		System.out.println("La edad media de los alumnos es de: "+media+" años.");
 
 
 	}

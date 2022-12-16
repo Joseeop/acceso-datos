@@ -2,13 +2,35 @@ package pollo;
 //TERMINADA
 public class Alumno {
 
+	/**
+	 * variable id de alumno
+	 */
 	private int id;
+	/**
+	 * Variable nombre de alumno
+	 */
 	private String nombre;
+	/**
+	 * Variable apellido de alumno
+	 */
 	private String apellido;
+	/**
+	 * Variable edad de alumno
+	 */
 	private int edad;
+	/**
+	 * Variable clase de la clase Clase
+	 */
 	private Clase clase;
 	
-	
+	/**
+	 * Constructor de clase alumno
+	 * @param id
+	 * @param nombre
+	 * @param apellido
+	 * @param edad
+	 * @param clase
+	 */
 	public Alumno(int id,String nombre,String apellido, int edad, Clase clase) {
 		super();
 		this.id = id;
@@ -19,6 +41,13 @@ public class Alumno {
 		
 	}
 
+	/**
+	 * Constructor de clase Alumno, sin id.
+	 * @param nombre
+	 * @param apellido
+	 * @param edad
+	 * @param clase
+	 */
 
 	public Alumno( String nombre,String apellido, int edad, Clase clase) {
 		super();
